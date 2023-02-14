@@ -1,9 +1,12 @@
+import os
 import time
-import paho.mqtt.client as mqtt
 import random
+import paho.mqtt.client as mqtt
+from dotenv import load_dotenv
+load_dotenv(".env")
 
 mqttClient = mqtt.Client(client_id="greenhouse")
-mqttClient.connect('192.168.8.6', 1883)
+mqttClient.connect(str(os.environ.get("HOST_SERVER")), int(os.environ.get("PORT_SERVER")))
 mqttClient.loop_start()
 
 
